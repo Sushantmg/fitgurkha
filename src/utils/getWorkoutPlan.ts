@@ -1,30 +1,26 @@
-export function getWorkoutPlan(exerciseFrequency: string): string[] {
-  switch (exerciseFrequency) {
-    case "never":
+import { Workout } from "@/types/workout";// import shared type
+
+export const getWorkoutPlan = (activityLevel: string): Workout[] => {
+  switch (activityLevel?.toLowerCase()) {
+    case "low":
       return [
-        "Start with 10 minutes of walking daily",
-        "Try beginner yoga 2 times a week",
-        "Increase activity gradually",
+        { name: "Stretching", type: "cardio", duration: 15, intensity: "low" },
+        { name: "Light Walking", type: "cardio", duration: 20, intensity: "low" },
       ];
-    case "sometimes":
+    case "medium":
       return [
-        "30 minutes cardio 3 times a week",
-        "Strength training 2 times a week",
-        "Include stretching exercises",
+        { name: "Jogging", type: "cardio", duration: 25, intensity: "medium" },
+        { name: "Bodyweight Exercises", type: "strength", duration: 20, intensity: "medium" },
       ];
-    case "regularly":
+    case "high":
       return [
-        "45 minutes cardio 4 times a week",
-        "Strength training 3 times a week",
-        "Include high-intensity interval training (HIIT)",
-      ];
-    case "daily":
-      return [
-        "60 minutes varied workouts daily",
-        "Mix strength, cardio, and flexibility",
-        "Rest and recovery days as needed",
+        { name: "Running", type: "cardio", duration: 30, intensity: "high" },
+        { name: "Weight Lifting", type: "strength", duration: 30, intensity: "high" },
+        { name: "Cycling", type: "cycling", duration: 45, intensity: "high" },
       ];
     default:
-      return ["Stay active and listen to your body."];
+      return [
+        { name: "Basic Stretching", type: "cardio", duration: 10, intensity: "low" },
+      ];
   }
-}
+};
