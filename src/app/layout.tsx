@@ -3,6 +3,8 @@ import Sidebar from "@/components/Sidebar";
 import { UserDataProvider } from "@/context/UserDataContext";
 import { AuthProvider } from "@/context/AuthContext";
 import "./globals.css"; // Ensure you have global styles for Tailwind CSS
+import  {ThemeProvider} from "@/context/ThemeContext"
+
 
 export const metadata = {
   title: "Fitness Tracker",
@@ -17,14 +19,20 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="flex min-h-screen h-screen bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100">
-        <Sidebar />
+        <ThemeProvider>
         <div className="flex flex-col flex-1">
+          <Sidebar />
+          {/* Main content area */}
           <main className="flex-1 overflow-auto">{/* content */}
+            
             <AuthProvider>
               <UserDataProvider>{children}</UserDataProvider>
             </AuthProvider>
+            
           </main>
+          
         </div>
+        </ThemeProvider>
       </body>
     </html>
   );
