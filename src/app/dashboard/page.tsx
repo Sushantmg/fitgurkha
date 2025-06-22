@@ -2,8 +2,8 @@
 
 import React, { useEffect } from "react";
 import { useUserData } from "@/context/UserDataContext";
+import { useRouter } from "next/navigation";
 
-// ✅ Define the type here (since you're not importing from a types file)
 type UserData = {
   age: number;
   name: string;
@@ -14,7 +14,8 @@ type UserData = {
 };
 
 export default function Dashboard() {
-  const { userData, setUserData } = useUserData();
+  const { userData, setUserData, clearUserData } = useUserData();
+  const router = useRouter();
 
   useEffect(() => {
     if (!userData) {
@@ -34,6 +35,11 @@ export default function Dashboard() {
     return <p>Loading user data...</p>;
   }
 
+  function handleLogout() {
+    clearUserData();
+    router.push("/onboarding"); // Redirect to onboarding or login page
+  }
+
   return (
     <div className="max-w-4xl mx-auto p-6">
       <h1 className="text-3xl font-bold mb-4">Welcome back, {userData.name}!</h1>
@@ -42,6 +48,13 @@ export default function Dashboard() {
       <p>Gender: {userData.gender}</p>
       <p>Exercise Frequency: {userData.exerciseFrequency}</p>
       <p>Weight: {userData.weightKg ?? "Not set"} kg</p>
+
+      <button
+        onClick={handleLogout}
+        className="mt-6 bg-red-600 hover:bg-red-700 text-white font-semibold py-2 px-4 rounded"
+      >
+        Logout
+      </button>
     </div>
   );
 }
