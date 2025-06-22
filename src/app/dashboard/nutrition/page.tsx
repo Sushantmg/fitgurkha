@@ -7,13 +7,12 @@ import FoodCard from "@/components/FoodCard";
 import { GiFruitBowl } from "react-icons/gi";
 import { motion } from "framer-motion";
 
-// Define types here or import from your types file
 type UserData = {
   name: string;
   age: number;
   heightCm: number;
   gender: "male" | "female";
-  exerciseFrequency: string;
+  exerciseFrequency: "never" | "sometimes" | "regularly" | "daily";
 };
 
 type FoodItem = {
@@ -21,16 +20,30 @@ type FoodItem = {
   description?: string;
 };
 
+function isValidExerciseFrequency(
+  freq: string
+): freq is "never" | "sometimes" | "regularly" | "daily" {
+  return ["never", "sometimes", "regularly", "daily"].includes(freq);
+}
+
 export default function NutritionPage() {
   const [user, setUser] = useState<UserData | null>(null);
   const [foods, setFoods] = useState<FoodItem[]>([]);
 
   useEffect(() => {
-    const userData = getCookie("userData") as UserData | null;
-    if (userData) {
-      setUser(userData);
-      const recommendedFoods = getFoodRecommendations(userData);
-      setFoods(recommendedFoods);
+    const raw = getCookie("userData");
+    if (raw) {
+      try {
+        const userData: UserData = JSON.parse(raw);
+        if (isValidExerciseFrequency(userData.exerciseFrequency)) {
+          setUser(userData);
+          setFoods(getFoodRecommendations(userData));
+        } else {
+          console.warn("Invalid exerciseFrequency in userData cookie");
+        }
+      } catch (error) {
+        console.error("Error parsing userData cookie:", error);
+      }
     }
   }, []);
 
@@ -56,7 +69,10 @@ export default function NutritionPage() {
 
       <section>
         <div className="flex items-center gap-3 mb-6">
-          <GiFruitBowl className="text-green-500 dark:text-green-400" size={28} />
+          <GiFruitBowl
+            className="text-green-500 dark:text-green-400"
+            size={28}
+          />
           <h2 className="text-2xl font-semibold">Healthy Picks Just for You</h2>
         </div>
 
