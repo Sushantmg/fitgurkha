@@ -2,7 +2,17 @@
 
 import React, { useEffect } from "react";
 import { useUserData } from "@/context/UserDataContext";
-import type { UserData } from "@/types/userData";
+
+// ✅ Define the type here (since you're not importing from a types file)
+type UserData = {
+  age: number;
+  name: string;
+  heightCm: number;
+  gender: "male" | "female" | "other";
+  exerciseFrequency: "never" | "sometimes" | "regularly" | "daily";
+  weightKg?: number;
+};
+
 export default function Dashboard() {
   const { userData, setUserData } = useUserData();
 
