@@ -2,7 +2,8 @@
 
 import React, { useEffect } from "react";
 import { useUserData } from "@/context/UserDataContext";
-import type { UserData} from "@/types/userData";
+import type { UserData } from "@/types/userData";
+
 
 export default function Dashboard() {
   const { userData, setUserData } = useUserData();
