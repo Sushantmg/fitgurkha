@@ -28,15 +28,16 @@ export default function LoginPage() {
     return () => clearInterval(interval);
   }, []);
 
-  const handleLogin = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (username && password) {
-      setCookie("auth", { username }, 7);
-      router.push("/dashboard");
-    } else {
-      alert("Please fill in username and password");
-    }
-  };
+ const handleLogin = (e: React.FormEvent) => {
+  e.preventDefault();
+  if (username && password) {
+    setCookie("auth", JSON.stringify({ username }), 7);
+    router.push("/dashboard");
+  } else {
+    alert("Please fill in username and password");
+  }
+};
+
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-[#e6f2e9] via-[#c7e3cd] to-[#a3d9b1] p-6">
