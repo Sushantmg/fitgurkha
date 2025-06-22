@@ -1,8 +1,23 @@
 "use client";
 
-import React, { createContext, useContext, useState, useEffect, ReactNode } from "react";
+import React, {
+  createContext,
+  useContext,
+  useState,
+  useEffect,
+  ReactNode,
+} from "react";
 import Cookies from "js-cookie";
-import type { UserData } from "@/types/userData";
+
+// ✅ Define and export the UserData type here
+export interface UserData {
+  age: number;
+  name: string;
+  heightCm: number;
+  gender: "male" | "female" | "other";
+  exerciseFrequency: "never" | "sometimes" | "regularly" | "daily";
+  weightKg?: number;
+}
 
 interface UserDataContextType {
   userData: UserData | null;
@@ -10,7 +25,9 @@ interface UserDataContextType {
   clearUserData: () => void;
 }
 
-const UserDataContext = createContext<UserDataContextType | undefined>(undefined);
+const UserDataContext = createContext<UserDataContextType | undefined>(
+  undefined
+);
 
 export function UserDataProvider({ children }: { children: ReactNode }) {
   const [userData, setUserDataState] = useState<UserData | null>(null);
