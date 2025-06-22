@@ -1,8 +1,9 @@
 export type Intensity = "low" | "medium" | "high";
 
 export interface Workout {
+  id: string;          // unique id required
   name: string;
-  type: string;       // e.g. "cardio", "strength", "cycling", "swimming"
-  duration: number;   // duration in minutes
+  type: string;
+  duration: number;    // duration in minutes
   intensity: Intensity;
 }

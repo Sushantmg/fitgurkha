@@ -2,16 +2,7 @@
 
 import React, { createContext, useContext, useState, useEffect, ReactNode } from "react";
 import Cookies from "js-cookie";
-
-export interface UserData {
-  age: number;
-  name: string;
-  heightCm: number;
-  gender: "male" | "female" | "other";
-  exerciseFrequency: "never" | "sometimes" | "regularly" | "daily";
-  weightKg?: number;
-  // Add more fields as needed
-}
+import type { UserData } from "@/types/userData";
 
 interface UserDataContextType {
   userData: UserData | null;
@@ -27,7 +18,11 @@ export function UserDataProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     const savedData = Cookies.get("userData");
     if (savedData) {
-      setUserDataState(JSON.parse(savedData));
+      try {
+        setUserDataState(JSON.parse(savedData));
+      } catch {
+        Cookies.remove("userData");
+      }
     }
   }, []);
 

@@ -6,10 +6,23 @@ import ProgressChart from "@/components/ProgressChart";
 import { motion } from "framer-motion";
 import { MdTrendingDown } from "react-icons/md";
 
-export default function ProgressPage() {
-  const [user, setUser] = useState<any>(null);
+// Type declarations
+type User = {
+  name: string;
+  age: number;
+  heightCm: number;
+  gender: string;
+  exerciseFrequency: string;
+};
 
-  const [progressData, setProgressData] = useState([
+type ProgressEntry = {
+  date: string;
+  weight: number;
+};
+
+export default function ProgressPage() {
+  const [user, setUser] = useState<User | null>(null);
+  const [progressData, setProgressData] = useState<ProgressEntry[]>([
     { date: "2025-06-01", weight: 70 },
     { date: "2025-06-08", weight: 69 },
     { date: "2025-06-15", weight: 68 },
@@ -17,8 +30,15 @@ export default function ProgressPage() {
   ]);
 
   useEffect(() => {
-    const data = getCookie("userData");
-    setUser(data);
+    const raw = getCookie("userData");
+    if (raw) {
+      try {
+        const parsed: User = JSON.parse(raw);
+        setUser(parsed);
+      } catch (err) {
+        console.error("Error parsing userData cookie:", err);
+      }
+    }
   }, []);
 
   if (!user)
@@ -46,7 +66,7 @@ export default function ProgressPage() {
           Progress Tracking 📉
         </motion.h2>
         <p className="text-gray-600 dark:text-gray-300 transition-colors">
-          Stay motivated, {user.name}! Every step counts.
+          Stay motivated, <span className="font-semibold">{user.name}</span>! Every step counts.
         </p>
       </div>
 

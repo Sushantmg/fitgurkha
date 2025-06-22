@@ -13,13 +13,14 @@ export default function FoodCard({ name, description }: FoodCardProps) {
   return (
     <motion.div
       whileHover={{ scale: 1.05 }}
-      className="bg-white/80 backdrop-blur-sm rounded-lg shadow-md p-5 border border-gray-200 hover:shadow-xl transition-shadow duration-300"
+      className="bg-white/40 dark:bg-white/10 backdrop-blur-md border border-gray-200 dark:border-gray-700 shadow-lg p-5 rounded-xl transition-all duration-300 hover:shadow-2xl"
+      aria-label={`Food card for ${name}`}
     >
       <div className="flex items-center gap-3 mb-3">
-        <GiFruitBowl size={28} className="text-green-500" />
-        <h3 className="text-xl font-semibold text-gray-900">{name}</h3>
+        <GiFruitBowl size={28} className="text-green-500 dark:text-green-400" />
+        <h3 className="text-xl font-semibold text-gray-900 dark:text-white">{name}</h3>
       </div>
-      <p className="text-gray-700 text-sm">{description}</p>
+      <p className="text-sm text-gray-700 dark:text-gray-300">{description}</p>
     </motion.div>
   );
 }

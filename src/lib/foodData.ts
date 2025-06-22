@@ -1,73 +1,47 @@
-export interface FoodItem {
+// Define Food type
+export interface Food {
   id: number;
   name: string;
-  calories: number; // per serving
-  protein: number;  // grams
-  carbs: number;    // grams
-  fats: number;     // grams
-  category: "protein" | "carb" | "fat" | "vegetable" | "fruit" | "snack";
-  description?: string;
+  category: "protein" | "vegetable" | "fruit" | "carb" | "fat" | string;
+  description: string;
+  calories?: number;
 }
 
-export const foodData: FoodItem[] = [
+// Sample food data
+export const foodData: Food[] = [
   {
     id: 1,
-    name: "Grilled Chicken Breast",
-    calories: 165,
-    protein: 31,
-    carbs: 0,
-    fats: 3.6,
+    name: "Chicken Breast",
     category: "protein",
-    description: "Lean protein source great for muscle building.",
+    description: "Lean and high in protein, great for muscle building.",
+    calories: 165,
   },
   {
     id: 2,
-    name: "Brown Rice",
-    calories: 216,
-    protein: 5,
-    carbs: 44,
-    fats: 1.8,
-    category: "carb",
-    description: "Whole grain carb that provides long-lasting energy.",
+    name: "Broccoli",
+    category: "vegetable",
+    description: "Rich in vitamins and fiber, helps digestion.",
+    calories: 55,
   },
   {
     id: 3,
-    name: "Avocado",
-    calories: 160,
-    protein: 2,
-    carbs: 9,
-    fats: 15,
-    category: "fat",
-    description: "Healthy fats that support heart health.",
+    name: "Apple",
+    category: "fruit",
+    description: "Sweet and refreshing, high in fiber and antioxidants.",
+    calories: 95,
   },
   {
     id: 4,
-    name: "Broccoli",
-    calories: 55,
-    protein: 4,
-    carbs: 11,
-    fats: 0.5,
-    category: "vegetable",
-    description: "Rich in fiber and vitamins.",
+    name: "Brown Rice",
+    category: "carb",
+    description: "Good source of complex carbohydrates and fiber.",
+    calories: 216,
   },
   {
     id: 5,
-    name: "Apple",
-    calories: 95,
-    protein: 0.5,
-    carbs: 25,
-    fats: 0.3,
-    category: "fruit",
-    description: "High fiber fruit to keep you full.",
-  },
-  {
-    id: 6,
     name: "Almonds",
-    calories: 170,
-    protein: 6,
-    carbs: 6,
-    fats: 15,
-    category: "snack",
-    description: "Nutritious snack full of healthy fats and protein.",
+    category: "fat",
+    description: "Healthy fats, good for heart health.",
+    calories: 575,
   },
 ];
