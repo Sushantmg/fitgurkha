@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Link from "next/link";
 import {
   FaFacebookF,
   FaTwitter,
@@ -26,36 +27,36 @@ export default function Footer() {
           <h3 className="text-xl font-semibold mb-4">Quick Links</h3>
           <ul className="space-y-2 text-green-100">
             <li>
-              <a
+              <Link
                 href="/"
                 className="hover:text-white transition-colors duration-300"
               >
                 Home
-              </a>
+              </Link>
             </li>
             <li>
-              <a
+              <Link
                 href="/features"
                 className="hover:text-white transition-colors duration-300"
               >
                 Features
-              </a>
+              </Link>
             </li>
             <li>
-              <a
+              <Link
                 href="/reviews"
                 className="hover:text-white transition-colors duration-300"
               >
                 Reviews
-              </a>
+              </Link>
             </li>
             <li>
-              <a
+              <Link
                 href="/onboarding"
                 className="hover:text-white transition-colors duration-300"
               >
                 Get Started
-              </a>
+              </Link>
             </li>
           </ul>
         </div>

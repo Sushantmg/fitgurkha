@@ -6,7 +6,6 @@ import ProgressChart from "@/components/ProgressChart";
 import { motion } from "framer-motion";
 import { MdTrendingDown } from "react-icons/md";
 
-// Type declarations
 type User = {
   name: string;
   age: number;
@@ -22,7 +21,7 @@ type ProgressEntry = {
 
 export default function ProgressPage() {
   const [user, setUser] = useState<User | null>(null);
-  const [progressData, setProgressData] = useState<ProgressEntry[]>([
+  const [progressData] = useState<ProgressEntry[]>([
     { date: "2025-06-01", weight: 70 },
     { date: "2025-06-08", weight: 69 },
     { date: "2025-06-15", weight: 68 },
