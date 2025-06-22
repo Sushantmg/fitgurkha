@@ -1,5 +1,3 @@
-// src/types/userData.ts
-
 export interface UserData {
   age: number;
   name: string;
